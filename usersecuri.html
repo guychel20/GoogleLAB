@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Security Settings - Alex Bell</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f9f9f9;
+    }
+    h1, h2, h3 {
+      color: #003366;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #0059b3;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003d80;
+    }
+    input[type="text"] {
+      margin: 5px;
+      padding: 5px;
+      width: 250px;
+    }
+    ul li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Review Security Settings for: <em>Alex Bell</em></h1>
+
+  <section>
+    <h2>Password Management</h2>
+    <button onclick="alert('Password reset initiated for Alex Bell.')">Reset Password</button>
+    <button onclick="alert('User will be required to change password on next login.')">Require Password Change</button>
+  </section>
+
+  <section>
+    <h2>2-Step Verification (2SV)</h2>
+    <label>
+      <input type="checkbox" id="toggle2sv" onchange="toggle2SV()"> 2SV Enabled
+    </label>
+  </section>
+
+  <section>
+    <h2>Account Recovery</h2>
+    <label>Recovery Email: <input type="text" value="alex.bell@example.com"></label><br>
+    <label>Recovery Phone: <input type="text" value="+1-555-234-5678"></label>
+  </section>
+
+  <section>
+    <h2>Security Keys</h2>
+    <ul id="keyList">
+      <li>YubiKey - Enrolled</li>
+    </ul>
+    <button onclick="addKey()">Add Security Key</button>
+  </section>
+
+  <section>
+    <h2>App-Specific Passwords</h2>
+    <ul id="aspList">
+      <li>iOS Mail App <button onclick="removeASP(this)">Remove</button></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Third-Party App Access</h2>
+    <ul>
+      <li>Zoom Integration <button onclick="alert('Zoom access revoked.')">Revoke</button></li>
+      <li>Slack Add-on <button onclick="alert('Slack access revoked.')">Revoke</button></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Session Control</h2>
+    <button onclick="alert('Sign-in cookies reset. User will be signed out from all devices.')">Reset Sign-In Cookies</button>
+    <button onclick="alert('Login challenge disabled temporarily.')">Temporarily Disable Login Challenge</button>
+  </section>
+
+  <script>
+    function toggle2SV() {
+      const enabled = document.getElementById("toggle2sv").checked;
+      alert("2SV is now " + (enabled ? "enabled" : "disabled"));
+    }
+
+    function addKey() {
+      const list = document.getElementById("keyList");
+      const li = document.createElement("li");
+      li.textContent = "New Security Key - Enrolled";
+      list.appendChild(li);
+    }
+
+    function removeASP(btn) {
+      const li = btn.parentElement;
+      li.remove();
+    }
+  </script>
+</body>
+</html>
